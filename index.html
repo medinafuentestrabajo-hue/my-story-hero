@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Story Hero — Personalized Social Stories · Historias sociales personalizadas</title>
+<meta name="description" content="A personalized social story where your child is the hero — illustrated from their photo, in English or Spanish, delivered as a printable PDF in 24–48 hours. From $29.99. Una historia social personalizada donde tu hijo es el protagonista.">
+<style>
+  :root{
+    --ink:#3d2c29; --paper:#fffbf3; --card:#ffffff; --soft:#fef3e2;
+    --accent:#e0673c; --accent-dark:#c25227; --accent2:#3f8f7f; --accent2-dark:#2f7264;
+    --sun:#f2b950; --line:#f0ddc8; --muted:#7a655c; --privacy-bg:#eef7f3; --privacy-line:#3f8f7f;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;background:var(--paper);color:var(--ink);font-size:20px;line-height:1.6}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  /* Top bar */
+  .topbar{background:var(--ink);color:#ffe9d6;text-align:center;padding:10px 16px;font-size:18px}
+  .topbar a{color:#ffd9a8;font-weight:bold;margin:0 10px}
+  header{background:linear-gradient(180deg,#fff3df,#fffbf3);text-align:center;padding:38px 16px 10px;border-bottom:3px solid var(--sun)}
+  header .brand{margin:0;font-size:46px;letter-spacing:.3px;color:var(--ink)}
+  header .brand span{color:var(--accent)}
+  header .tagline{margin:8px 0 0;font-size:23px;color:var(--muted)}
+  .langnav{margin:18px 0 4px;font-size:19px}
+  .langnav a{display:inline-block;background:var(--card);border:2px solid var(--line);border-radius:30px;padding:8px 22px;margin:4px 6px;color:var(--ink);text-decoration:none;font-weight:bold}
+  .langnav a:hover{border-color:var(--accent)}
+  section{padding:36px 0 6px}
+  h2{font-size:33px;margin:0 0 14px;line-height:1.25}
+  h3{font-size:24px;margin:0 0 8px}
+  p{margin:0 0 14px}
+  .lead{font-size:24px;line-height:1.55}
+  .cta{display:inline-block;background:var(--accent);color:#fff;font-size:23px;font-weight:bold;padding:15px 32px;border-radius:10px;text-decoration:none;margin:10px 8px 6px 0}
+  .cta:hover{background:var(--accent-dark)}
+  .cta.secondary{background:var(--accent2)}
+  .cta.secondary:hover{background:var(--accent2-dark)}
+  .note{font-size:18px;color:var(--muted)}
+  .badges{font-size:19px;margin-top:10px}
+  .badges span{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:20px;padding:4px 14px;margin:3px 4px 3px 0}
+  /* Evidence / honest box */
+  .evidence{background:var(--soft);border:2px solid var(--line);border-radius:12px;padding:24px 26px}
+  .disclaimer{background:#fff;border:2px dashed var(--accent);border-radius:10px;padding:16px 20px;font-size:19px;font-weight:bold;text-align:center;margin-top:16px}
+  /* Samples */
+  .samples{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:760px){.samples{grid-template-columns:1fr} header .brand{font-size:36px}}
+  .sample{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:24px}
+  .sample .emoji{font-size:44px}
+  .sample a{color:var(--accent-dark);font-weight:bold}
+  /* Topics */
+  .topics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:900px){.topics{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.topics{grid-template-columns:1fr}}
+  .topic{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center}
+  .topic .emoji{font-size:38px;display:block;margin-bottom:6px}
+  .topic strong{font-size:20px}
+  .topic.custom{border:2px dashed var(--accent2);background:var(--privacy-bg)}
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .step .num{display:inline-block;background:var(--sun);color:var(--ink);font-size:26px;font-weight:bold;width:46px;height:46px;line-height:46px;text-align:center;border-radius:50%;margin-bottom:10px}
+  /* Prices */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:960px){.prices{grid-template-columns:1fr}}
+  .price{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:26px}
+  .price .amount{font-size:42px;color:var(--accent);font-weight:bold}
+  .price.best{border-color:var(--accent2)}
+  .badge{background:var(--accent2);color:#fff;font-size:16px;padding:3px 12px;border-radius:20px;vertical-align:middle}
+  .price ul{margin:8px 0 0;padding-left:22px}
+  .price li{margin-bottom:6px}
+  .launch{background:#fff7d6;border:2px solid var(--sun);border-radius:12px;padding:20px 24px;margin-top:20px;text-align:center;font-size:21px}
+  /* Privacy — highlighted, its own section */
+  .privacy{background:var(--privacy-bg);border:3px solid var(--privacy-line);border-radius:14px;padding:28px 30px}
+  .privacy h2{color:var(--accent2-dark)}
+  .privacy ul{margin:8px 0 0;padding-left:24px}
+  .privacy li{margin-bottom:10px}
+  /* FAQ */
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+  summary{font-size:22px;cursor:pointer;font-weight:bold}
+  details p{margin-top:10px}
+  /* Form */
+  form{background:var(--card);border:2px solid var(--accent);border-radius:12px;padding:28px}
+  label{display:block;font-weight:bold;margin:20px 0 6px;font-size:20px}
+  label.checkbox{font-weight:normal;display:flex;gap:12px;align-items:flex-start}
+  label.checkbox input{width:26px;height:26px;flex:none;margin-top:4px}
+  input,select,textarea{width:100%;font-size:20px;padding:12px;border:1px solid #cdb49f;border-radius:8px;font-family:inherit;background:#fff;color:var(--ink)}
+  button{background:var(--accent);color:#fff;font-size:24px;font-weight:bold;border:0;padding:16px 36px;border-radius:10px;cursor:pointer;margin-top:24px}
+  button:hover{background:var(--accent-dark)}
+  .lang-divider{border:0;border-top:4px solid var(--sun);margin:56px 0 0}
+  footer{background:var(--ink);color:#e8d5c3;text-align:center;padding:28px 16px;margin-top:48px;font-size:18px;line-height:1.6}
+  footer .small{font-size:16px;color:#bfae9f}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  🌎 <a href="#en">English</a> · <a href="#es">Español</a> — same service, your language / el mismo servicio, en tu idioma
+</div>
+
+<header>
+  <p class="brand">My Story <span>Hero</span> ⭐</p>
+  <p class="tagline">Personalized Social Stories — Your child is the hero<br>
+  Historias sociales personalizadas — Tu hijo es el protagonista</p>
+  <nav class="langnav">
+    <a href="#en">🇺🇸 Read in English</a>
+    <a href="#es">🇪🇸 Leer en español</a>
+  </nav>
+</header>
+
+<!-- ================================================================
+     ENGLISH VERSION
+     ================================================================ -->
+<div id="en" lang="en">
+<div class="wrap">
+
+  <!-- HERO EN -->
+  <section>
+    <p class="lead">A new situation is coming — the first day of school, the dentist, a haircut.
+    We turn it into a gentle, illustrated <strong>social story where your child is the hero</strong>:
+    their name, their face as the main character, and exactly what will happen, step by step —
+    so you can read it together, again and again, before the big day.</p>
+    <a class="cta" href="#order-en">Create my child's story — from $29.99</a>
+    <a class="cta secondary" href="#samples-en">See a real sample first</a>
+    <div class="badges">
+      <span>📩 Printable PDF in 24–48 hours</span>
+      <span>🎨 Illustrated from your child's photo</span>
+      <span>🌎 English &amp; Spanish</span>
+      <span>🔒 Photo deleted after delivery</span>
+      <span>🧩 3 packs to choose from</span>
+      <span>🤟 Signs annex (Complete Pack)</span>
+      <span>💙 Parent Guide (Complete Pack)</span>
+    </div>
+  </section>
+
+  <!-- SAMPLES EN -->
+  <section id="samples-en">
+    <h2>See a real sample</h2>
+    <p>These are complete stories, made exactly the way yours will be. Our sample hero,
+    <strong>Leo, is a fictional child</strong> — we never publish a real client's photo or story
+    without written permission (see our privacy promise below).</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="emoji">🦷</div>
+        <h3>Leo Goes to the Dentist — English</h3>
+        <p>A full sample story: what Leo will see, hear and feel at the dentist, what he can do,
+        and a happy ending — plus the short guide for parents at the end.</p>
+        <p><a href="demos/Leo_Goes_to_the_Dentist_DEMO_EN.pdf">📄 Download the sample story (PDF)</a></p>
+      </div>
+      <div class="sample">
+        <div class="emoji">🎒</div>
+        <h3>Leo's First Day of School — Spanish</h3>
+        <p>The same quality, in Spanish: Leo's first day of school, told step by step.
+        Every story can be made in English, in Spanish, or both.</p>
+        <p><a href="demos/Leo_Primer_Dia_de_Escuela_DEMO_ES.pdf">📄 Descargar la historia de muestra (PDF)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVIDENCE / HONEST BASIS EN -->
+  <section>
+    <h2>Why social stories? The honest basis</h2>
+    <div class="evidence">
+      <p>Social narratives are one of the <strong>28 evidence-based practices</strong> identified in the
+      <strong>NCAEP 2020 report</strong> (National Clearinghouse on Autism Evidence and Practice), and the
+      National Standards Project classifies them as an <strong>established</strong> practice for children.</p>
+      <p>The research also says something important about <em>how</em> they work best: social stories tend to
+      help most when they are <strong>personalized, visual, and read repeatedly before the situation</strong>.
+      That is exactly what we make — a story about <em>your</em> child, with pictures of <em>your</em> child as
+      the hero, written in simple first-person sentences you can read together as many times as you like.</p>
+      <p>We make no medical promises. A social story is a preparation and learning tool — it does not replace
+      the guidance of your child's own teachers or professionals.</p>
+      <div class="disclaimer">Educational support resource — not medical advice, diagnosis, or treatment.</div>
+    </div>
+  </section>
+
+  <!-- TOPICS EN -->
+  <section>
+    <h2>Choose the situation your child is facing</h2>
+    <p>Eight ready-to-personalize topics — or describe your own in the form's note.</p>
+    <div class="topics">
+      <div class="topic"><span class="emoji">🎒</span><strong>First Day of School</strong></div>
+      <div class="topic"><span class="emoji">🦷</span><strong>Going to the Dentist</strong></div>
+      <div class="topic"><span class="emoji">✂️</span><strong>Getting a Haircut</strong></div>
+      <div class="topic"><span class="emoji">✈️</span><strong>First Flight</strong></div>
+      <div class="topic"><span class="emoji">🚽</span><strong>Potty Training</strong></div>
+      <div class="topic"><span class="emoji">👶</span><strong>New Baby Sibling</strong></div>
+      <div class="topic"><span class="emoji">🎂</span><strong>Birthday Party</strong></div>
+      <div class="topic"><span class="emoji">🛏️</span><strong>Sleeping in My Own Bed</strong></div>
+    </div>
+    <p class="note" style="margin-top:14px">Every story is written for children ages 3–10, in simple, positive,
+    first-person language: what will happen, in what order, what I can do, and how it ends well.</p>
+  </section>
+
+  <!-- HOW IT WORKS EN -->
+  <section>
+    <h2>How it works — 3 simple steps</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><h3>Tell us &amp; send a photo</h3>
+        <p>Fill in the short form below: your child's name and age, the topic, the language
+        (English, Spanish, or both), one clear photo, <strong>what your child loves</strong> (dinosaurs, trains,
+        space, animals…) — and a brief note about anything we should know.</p></div>
+      <div class="step"><span class="num">2</span><h3>Confirm &amp; pay securely</h3>
+        <p>We reply by email to confirm the details, and send a secure <strong>PayPal</strong> payment link.
+        No account with us, no subscription — one simple payment before we start.</p></div>
+      <div class="step"><span class="num">3</span><h3>Your story arrives in 24–48 h</h3>
+        <p>You receive <strong>print-ready PDFs</strong> by email: your child's story (10–12 illustrated pages),
+        a short guide on how to read it together, coloring pages — and, in the Complete and 3 Moments Packs,
+        the <strong>signs annex</strong>, the full <strong>Parent Guide</strong> and the <strong>interactive workbook</strong>.
+        Then we delete your photo — see below.</p></div>
+    </div>
+  </section>
+
+  <!-- SIGNS EN -->
+  <section>
+    <h2>🤟 Signs for when words are hard</h2>
+    <p>Sometimes your child doesn't want to speak — or can't, in that moment. That doesn't mean they have
+    nothing to say. The <strong>Complete Pack</strong> and the <strong>3 Moments Pack</strong> include a
+    <strong>signs annex</strong>, so your child has another way to tell you what they need, right when it matters.</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="emoji">🙌</div>
+        <h3>The signs of this story</h3>
+        <p>Each story's annex teaches the signs for its own situation — for example, at the dentist:</p>
+        <ul>
+          <li><strong>Help</strong></li>
+          <li><strong>Hurt</strong></li>
+          <li><strong>All done</strong></li>
+          <li><strong>Break</strong> (pause)</li>
+        </ul>
+        <p>Your child can ask for help, say that something hurts, or ask for a pause — without words.</p>
+      </div>
+      <div class="sample">
+        <div class="emoji">⭐</div>
+        <h3>My First Signs — in the Complete &amp; 3 Moments Packs</h3>
+        <p>Those packs also include our starter set of <strong>12 essential signs</strong>, illustrated step by step:</p>
+        <p>Help · More · All done · Bathroom · Eat · Drink water · Hurt · Break · Mom · Dad · Yes · No</p>
+        <p>Simple signs your whole family can learn together and use every day, at home and anywhere.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Honest note: there is no universal sign language — every country has its own.
+    Our signs use <strong>ASL</strong> (American Sign Language, used in the U.S.), with notes where a sign differs in
+    <strong>LSM</strong> (Mexican Sign Language). Every sign is checked against ASL/LSM references before delivery.</div>
+  </section>
+
+  <!-- PARENT GUIDE EN -->
+  <section>
+    <h2>💙 Parent Guide included in the Complete &amp; 3 Moments Packs</h2>
+    <div class="evidence">
+      <p>The <strong>Complete Pack</strong> and the <strong>3 Moments Pack</strong> include our full guide for parents,
+      <strong>“Understanding Your Child When They Don't Speak”</strong>, at no extra cost (the Story Pack includes a
+      short reading guide). Because the story prepares your child, and this guide prepares <em>you</em>.</p>
+      <p>Inside, in plain, warm language:</p>
+      <ul>
+        <li>What your child may be <strong>communicating with their behavior</strong> when they don't use words</li>
+        <li>Common nonverbal signals — and what they can mean</li>
+        <li>How to respond in a <strong>hard moment</strong>: calm and safety first</li>
+        <li>Simple tools for home: offering choices, signs, and visual supports</li>
+        <li>When — and how — to look for professional support</li>
+      </ul>
+      <p><a href="guias/Parent_Guide_EN.pdf"><strong>📄 Read the full Parent Guide, free (PDF)</strong></a> —
+      the same guide Complete and 3 Moments families receive with their pack.</p>
+      <div class="disclaimer">Educational support resource — not medical advice, diagnosis, or treatment.</div>
+    </div>
+  </section>
+
+  <!-- MADE FOR YOUR CHILD EN -->
+  <section>
+    <h2>🦖 Made for your child — their favorite things included</h2>
+    <div class="evidence">
+      <p>The form asks one special question: <strong>what does your child love?</strong> Dinosaurs, trains, space,
+      animals, cars, the ocean… Whatever it is, that interest joins the story as your child's
+      <strong>companion and motivator</strong> — and appears in the coloring pages and interactive activities too.
+      A story about the dentist is easier to read when a friendly dinosaur comes along.</p>
+      <p class="note">Companions are original, generic characters drawn in our own style — we don't use
+      licensed or branded characters.</p>
+    </div>
+  </section>
+
+  <!-- PRICES EN -->
+  <section>
+    <h2>Packs — simple, honest prices</h2>
+    <div class="prices">
+      <div class="price">
+        <h3>Story Pack — <span class="amount">$29.99</span></h3>
+        <ul>
+          <li><strong>1 personalized story</strong> (1 topic from the menu of 8, or your own in the note)</li>
+          <li>Your child's name + illustrated character from their photo</li>
+          <li>10–12 page print-ready PDF</li>
+          <li>Mini reading guide for parents</li>
+          <li><strong>4 coloring pages</strong> from their story</li>
+          <li>Their favorite interest as a companion in the story</li>
+          <li>English <em>or</em> Spanish · Delivery in 24–48 hours</li>
+        </ul>
+      </div>
+      <div class="price best">
+        <h3>Complete Pack — <span class="amount">$49.99</span> <span class="badge">Family favorite</span></h3>
+        <ul>
+          <li><strong>Everything in the Story Pack</strong>, plus:</li>
+          <li><strong>Signs annex for your topic</strong> + the “My First Signs” set (12 essential signs)</li>
+          <li><strong>Full Parent Guide</strong> — “Understanding Your Child When They Don't Speak”</li>
+          <li><strong>Coloring book of their character</strong> (10 pages)</li>
+          <li><strong>Interactive workbook</strong>: tracing, cut-and-order the steps, matching lines</li>
+          <li><strong>Achievement chart</strong> — “I did it!”</li>
+          <li>1 free correction round · English <em>or</em> Spanish · 24–48 hours</li>
+        </ul>
+      </div>
+      <div class="price">
+        <h3>3 Moments Pack — <span class="amount">$79.99</span></h3>
+        <ul>
+          <li><strong>3 personalized stories</strong> — 3 different topics</li>
+          <li><strong>All the Complete Pack extras</strong> for your family</li>
+          <li>Signs annexes + My First Signs + full Parent Guide</li>
+          <li>Coloring book (10 pages) + interactive workbook</li>
+          <li>Achievement chart — “I did it!”</li>
+          <li>1 free correction round · English <em>or</em> Spanish</li>
+        </ul>
+      </div>
+    </div>
+    <div class="launch">
+      🎉 <strong>Launch offer:</strong> the first <strong>3 families</strong> get the <strong>Story Pack for $19.99</strong>
+      in exchange for a short testimonial after delivery. Mention “launch offer” in your form's note — first come, first served.
+    </div>
+    <p class="note" style="margin-top:12px">Comparable handmade personalized stories on Etsy sell for $19.99–$49.99
+    with 3–5 day delivery — story only. Our packs deliver in 24–48 hours, in English <em>and</em> Spanish,
+    with activities and guides included.</p>
+  </section>
+
+  <!-- INTERACTIVE EN -->
+  <section>
+    <h2>✂️ Interactive: a workbook your child does with their hands</h2>
+    <p>The Complete and 3 Moments Packs include a <strong>printable interactive workbook</strong> starring your
+    child and their favorite companion — activities to do together at the table, <strong>no screens needed</strong>:</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="emoji">✏️</div>
+        <h3>Trace, color &amp; match</h3>
+        <ul>
+          <li><strong>Follow the tracing lines</strong> — paths, shapes, and the letters of their own name</li>
+          <li><strong>Color</strong> their character and their story</li>
+          <li><strong>Draw matching lines</strong> — sign ↔ word, feeling ↔ face</li>
+          <li><strong>Circle what you need</strong> — choosing is communicating</li>
+        </ul>
+      </div>
+      <div class="sample">
+        <div class="emoji">⭐</div>
+        <h3>Cut, order &amp; celebrate</h3>
+        <ul>
+          <li><strong>Cut out the steps of their story and put them in order</strong> — first, then, last</li>
+          <li><strong>Find and count</strong> with their favorite theme</li>
+          <li><strong>Achievement chart</strong> with cut-out stars — “I did it!”</li>
+        </ul>
+        <p><a href="interactivo/Cuaderno_Interactivo_Leo_DEMO.pdf">📄 See Leo's sample interactive workbook (PDF, in Spanish)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIGITAL TODAY EN -->
+  <section>
+    <h2>📩 Digital today, printed tomorrow</h2>
+    <div class="evidence">
+      <p>Today, everything arrives as <strong>print-ready PDFs by email in 24–48 hours</strong>, ready to print
+      at home or at any print shop — no shipping, no waiting, anywhere in the world.</p>
+      <p>Tomorrow: a <strong>bound, printed edition</strong> will arrive as an option once the service is
+      validated (phase 2, print on demand). Digital families will be the first to know.</p>
+    </div>
+  </section>
+
+  <!-- PRIVACY EN -->
+  <section>
+    <div class="privacy">
+      <h2>🔒 Our privacy promise — your child's photo</h2>
+      <p>This is not fine print. It is part of the product, and it is why parents trust us:</p>
+      <ul>
+        <li><strong>One use only.</strong> Your child's photo is used for one thing: creating their illustrated character for their story.</li>
+        <li><strong>Deleted on delivery.</strong> When your story is delivered, we delete the photo — the original and every working copy. We keep nothing.</li>
+        <li><strong>Never published.</strong> We never post, share, or use a client's photo or story anywhere — unless you give us express written permission (for example, an anonymized sample).</li>
+        <li><strong>Fictional samples.</strong> Every sample on this page stars Leo, a fictional child created for demonstration. No real child's image appears on this site.</li>
+        <li><strong>No accounts, no tracking of your child.</strong> You order by email and a simple form. We ask only for what the story needs.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ EN -->
+  <section>
+    <h2>Questions, answered plainly</h2>
+    <details><summary>What kind of photo should I send?</summary>
+      <p>One clear photo where your child's face is well lit and easy to see — a phone photo is perfect.
+      We turn it into a soft, watercolor-style illustrated character that stays consistent through the whole story.
+      That photo is deleted as soon as your story is delivered.</p></details>
+    <details><summary>How long does it take, and how do I receive it?</summary>
+      <p>24–48 hours from confirmed payment. Your story arrives by email as a print-ready PDF
+      (10–12 pages) that you can print at home or at any print shop, or read on a tablet.</p></details>
+    <details><summary>Can I get the story in Spanish — or in both languages?</summary>
+      <p>Yes. Every story can be made in English, in Spanish, or — if your family is bilingual — ask us in the
+      form's note about a two-language version. Spanish is written by native speakers, not machine-translated word by word.</p></details>
+    <details><summary>What is this NOT?</summary>
+      <p>This is an <strong>educational support resource</strong>. It is not therapy, not a diagnosis, not medical
+      advice, and it makes no promise to cure, treat, or change any condition. It is a preparation story to read
+      with your child — the same kind of tool teachers and families have used for decades, made personal.</p></details>
+    <details><summary>How are the illustrations made?</summary>
+      <p>Honestly: our illustrations are <strong>AI-assisted and human-checked</strong>, created from your child's
+      photo in an original, consistent style — the same disclosure serious sellers in this niche make.
+      We use only our own illustrations; we never resell third-party pictogram libraries.</p></details>
+    <details><summary>What if something in the story is wrong?</summary>
+      <p>Tell us. If we made an error (a name, a detail you gave us), we fix it free, of course — and the
+      Complete and 3 Moments Packs include one free correction round. If a finished story truly isn't what you
+      ordered, write to us and we will make it right — a correction or a refund.</p></details>
+    <details><summary>What ages is this for?</summary>
+      <p>Children ages <strong>3–10</strong>. The language is simple and the sentences are short; if your child
+      needs even simpler wording, tell us in the note and we will adapt it.</p></details>
+    <details><summary>Which sign language are the signs in?</summary>
+      <p>There is <strong>no universal sign language</strong> — each country has its own, and we say so plainly.
+      Our signs use <strong>ASL</strong> (American Sign Language), with a note wherever a sign is different in
+      <strong>LSM</strong> (Mexican Sign Language), so families in the U.S. and Mexico can each learn the version
+      used around them. Every sign in your annex is illustrated and checked against ASL/LSM references before delivery.</p></details>
+    <details><summary>What is the Parent Guide — and is it really included?</summary>
+      <p>Yes — the full guide <strong>“Understanding Your Child When They Don't Speak”</strong> is included free
+      in the Complete Pack and the 3 Moments Pack (the Story Pack includes a short reading guide). It explains, in plain language, what your child may be communicating
+      with their behavior, how to respond in a hard moment, and simple tools to use at home — signs, choices, and
+      visual supports. You can read it free on this page before you order. It is an educational support resource,
+      not medical advice.</p></details>
+  </section>
+
+  <!-- ORDER FORM EN -->
+  <section id="order-en">
+    <h2>Order your child's story</h2>
+    <p>Fill in this form and attach one clear photo. We reply by email — usually within a few hours —
+    to confirm the details and send your secure PayPal payment link. Your story is ready 24–48 hours after payment.</p>
+
+    <!-- ============================================================
+         FORMSPREE — PENDIENTE / TODO:
+         Hay que crear un formulario PROPIO de «My Story Hero» en Formspree
+         y reemplazar REPLACE_ME por su ID real antes de publicar.
+         NO reutilizar el formulario de Heirloom Restored (f/xaeooydy):
+         es de otro negocio y mezcla las bandejas.
+         El plan gratuito de Formspree permite subida de archivos (foto).
+         ============================================================ -->
+    <form action="https://formspree.io/f/xyewwzgz" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_language" value="en">
+      <input type="hidden" name="form_version" value="EN">
+
+      <label for="parent_name_en">Your name (parent / guardian)</label>
+      <input type="text" id="parent_name_en" name="parent_name" required autocomplete="name">
+
+      <label for="email_en">Your email</label>
+      <input type="email" id="email_en" name="email" required autocomplete="email">
+
+      <label for="child_name_en">Your child's first name (the hero's name)</label>
+      <input type="text" id="child_name_en" name="child_name" required>
+
+      <label for="child_age_en">Your child's age</label>
+      <select id="child_age_en" name="child_age" required>
+        <option value="3">3 years old</option>
+        <option value="4">4 years old</option>
+        <option value="5" selected>5 years old</option>
+        <option value="6">6 years old</option>
+        <option value="7">7 years old</option>
+        <option value="8">8 years old</option>
+        <option value="9">9 years old</option>
+        <option value="10">10 years old</option>
+      </select>
+
+      <label for="story_language_en">Story language</label>
+      <select id="story_language_en" name="story_language" required>
+        <option value="english">English</option>
+        <option value="spanish">Spanish</option>
+        <option value="both">Both — ask me about a bilingual version</option>
+      </select>
+
+      <label for="topic_en">Topic</label>
+      <select id="topic_en" name="topic" required>
+        <option value="first_day_school">First Day of School</option>
+        <option value="dentist">Going to the Dentist</option>
+        <option value="haircut">Getting a Haircut</option>
+        <option value="first_flight">First Flight</option>
+        <option value="potty_training">Potty Training</option>
+        <option value="new_sibling">New Baby Sibling</option>
+        <option value="birthday_party">Birthday Party</option>
+        <option value="own_bed">Sleeping in My Own Bed</option>
+        <option value="custom">My own topic — I'll describe it in the note</option>
+      </select>
+
+      <label for="level_en">Which pack?</label>
+      <select id="level_en" name="level" required>
+        <option value="story_pack">Story Pack — $29.99 (story + mini guide + 4 coloring pages)</option>
+        <option value="complete_pack">Complete Pack — $49.99 (everything: signs, Parent Guide, coloring book, interactive workbook)</option>
+        <option value="three_moments">3 Moments Pack — $79.99 (3 stories + all Complete extras)</option>
+        <option value="launch">Launch offer — $19.99 Story Pack (first 3 families, with testimonial)</option>
+      </select>
+
+      <label for="child_loves_en">What does your child love? (dinosaurs, trains, space, animals…)</label>
+      <input type="text" id="child_loves_en" name="child_loves" placeholder="Their favorite thing becomes their companion in the story">
+      <p class="note">We draw an original companion in our own style — no licensed or branded characters.</p>
+
+      <label for="photo_en">Attach one clear photo of your child (JPG or PNG)</label>
+      <input type="file" id="photo_en" name="photo" accept="image/jpeg,image/png">
+      <p class="note">Used only to create your child's character — and deleted the moment your story is delivered.</p>
+
+      <label for="notes_en">Brief note — anything we should know? (What worries your child, names of teacher/dentist, details of your custom topic, “launch offer”…)</label>
+      <textarea id="notes_en" name="notes" rows="4"></textarea>
+
+      <label class="checkbox" for="privacy_en">
+        <input type="checkbox" id="privacy_en" name="privacy_accepted" value="yes" required>
+        <span>I understand and accept the privacy promise: my child's photo will be used only to create their
+        story's character and will be deleted when the story is delivered. Nothing will be published without my written permission.</span>
+      </label>
+
+      <button type="submit">Send my request</button>
+      <p class="note">Sending the form is free and carries no obligation. You pay only after we confirm
+      your order by email with a secure PayPal link.</p>
+    </form>
+  </section>
+
+</div>
+</div>
+
+<hr class="lang-divider">
+
+<!-- ================================================================
+     VERSIÓN EN ESPAÑOL
+     ================================================================ -->
+<div id="es" lang="es">
+<div class="wrap">
+
+  <!-- HERO ES -->
+  <section>
+    <h2>Tu hijo es el protagonista de su propia historia ⭐</h2>
+    <p class="lead">Se acerca una situación nueva — el primer día de escuela, el dentista, un corte de pelo.
+    La convertimos en una <strong>historia social ilustrada donde tu hijo es el protagonista</strong>:
+    su nombre, su carita como personaje principal y exactamente lo que va a pasar, paso a paso —
+    para leerla juntos, una y otra vez, antes del gran día.</p>
+    <a class="cta" href="#order-es">Crear la historia de mi hijo — desde $29.99</a>
+    <a class="cta secondary" href="#samples-es">Ver primero una muestra real</a>
+    <div class="badges">
+      <span>📩 PDF listo para imprimir en 24–48 horas</span>
+      <span>🎨 Ilustrado desde la foto de tu hijo</span>
+      <span>🌎 Inglés y español</span>
+      <span>🔒 La foto se borra al entregar</span>
+      <span>🧩 3 paquetes para elegir</span>
+      <span>🤟 Anexo de señas (Paquete Completo)</span>
+      <span>💙 Guía para Padres (Paquete Completo)</span>
+    </div>
+  </section>
+
+  <!-- MUESTRAS ES -->
+  <section id="samples-es">
+    <h2>Mira una muestra real</h2>
+    <p>Son historias completas, hechas exactamente igual que la tuya. Nuestro héroe de muestra,
+    <strong>Leo, es un niño ficticio</strong> — nunca publicamos la foto ni la historia de un cliente real
+    sin su permiso por escrito (abajo está nuestra promesa de privacidad).</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="emoji">🎒</div>
+        <h3>El primer día de escuela de Leo — Español</h3>
+        <p>Una historia de muestra completa: lo que Leo va a ver, escuchar y sentir en su primer día,
+        lo que puede hacer y un final feliz — más la guía breve para padres al final.</p>
+        <p><a href="demos/Leo_Primer_Dia_de_Escuela_DEMO_ES.pdf">📄 Descargar la historia de muestra (PDF)</a></p>
+      </div>
+      <div class="sample">
+        <div class="emoji">🦷</div>
+        <h3>Leo Goes to the Dentist — Inglés</h3>
+        <p>La misma calidad, en inglés: Leo va al dentista, contado paso a paso.
+        Cada historia se puede hacer en inglés, en español o en ambos idiomas.</p>
+        <p><a href="demos/Leo_Goes_to_the_Dentist_DEMO_EN.pdf">📄 Download the sample story (PDF)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BASE HONESTA ES -->
+  <section>
+    <h2>¿Por qué historias sociales? La base, con honestidad</h2>
+    <div class="evidence">
+      <p>Las narrativas sociales son una de las <strong>28 prácticas con base de evidencia</strong> identificadas en el
+      <strong>informe NCAEP 2020</strong> (National Clearinghouse on Autism Evidence and Practice), y el
+      National Standards Project las clasifica como práctica <strong>«establecida»</strong> para niños.</p>
+      <p>La investigación dice algo importante sobre <em>cómo</em> funcionan mejor: las historias sociales tienden a
+      ayudar más cuando son <strong>personalizadas, visuales y se leen repetidamente antes de la situación</strong>.
+      Eso es exactamente lo que hacemos — una historia sobre <em>tu</em> hijo, con ilustraciones de <em>tu</em> hijo como
+      protagonista, escrita con frases simples en primera persona para leerla juntos las veces que quieran.</p>
+      <p>No hacemos promesas médicas. Una historia social es una herramienta de preparación y aprendizaje —
+      no sustituye la orientación de los maestros ni de los profesionales de tu hijo.</p>
+      <div class="disclaimer">Recurso educativo de apoyo — no es consejo médico, diagnóstico ni tratamiento.</div>
+    </div>
+  </section>
+
+  <!-- TEMAS ES -->
+  <section>
+    <h2>Elige la situación que tu hijo va a enfrentar</h2>
+    <p>Ocho temas listos para personalizar — o describe el tuyo en la nota del formulario.</p>
+    <div class="topics">
+      <div class="topic"><span class="emoji">🎒</span><strong>Primer día de escuela</strong></div>
+      <div class="topic"><span class="emoji">🦷</span><strong>Ir al dentista</strong></div>
+      <div class="topic"><span class="emoji">✂️</span><strong>Cortarse el pelo</strong></div>
+      <div class="topic"><span class="emoji">✈️</span><strong>Primer vuelo en avión</strong></div>
+      <div class="topic"><span class="emoji">🚽</span><strong>Dejar el pañal</strong></div>
+      <div class="topic"><span class="emoji">👶</span><strong>Nuevo hermanito</strong></div>
+      <div class="topic"><span class="emoji">🎂</span><strong>Fiesta de cumpleaños</strong></div>
+      <div class="topic"><span class="emoji">🛏️</span><strong>Dormir solo en mi cama</strong></div>
+    </div>
+    <p class="note" style="margin-top:14px">Cada historia está escrita para niños de 3 a 10 años, con lenguaje simple,
+    positivo y en primera persona: qué va a pasar, en qué orden, qué puedo hacer yo y cómo todo termina bien.</p>
+  </section>
+
+  <!-- CÓMO FUNCIONA ES -->
+  <section>
+    <h2>Cómo funciona — 3 pasos simples</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><h3>Cuéntanos y manda una foto</h3>
+        <p>Llena el formulario breve de abajo: nombre y edad de tu hijo, el tema, el idioma
+        (inglés, español o ambos), una foto clara, <strong>qué le encanta a tu hijo</strong> (dinosaurios, trenes,
+        el espacio, animales…) y una nota breve con lo que debemos saber.</p></div>
+      <div class="step"><span class="num">2</span><h3>Confirmamos y pagas seguro</h3>
+        <p>Te respondemos por correo para confirmar los detalles y te mandamos un enlace seguro de pago por
+        <strong>PayPal</strong>. Sin cuentas ni suscripciones — un solo pago simple antes de empezar.</p></div>
+      <div class="step"><span class="num">3</span><h3>Tu historia llega en 24–48 h</h3>
+        <p>Recibes por correo <strong>PDFs listos para imprimir</strong>: la historia de tu hijo (10–12 páginas
+        ilustradas), una guía breve sobre cómo leerla juntos, páginas para colorear — y, en los paquetes Completo
+        y 3 Momentos, el <strong>anexo de señas</strong>, la <strong>Guía para Padres</strong> completa y el
+        <strong>cuaderno interactivo</strong>. Después borramos tu foto — mira abajo.</p></div>
+    </div>
+  </section>
+
+  <!-- SEÑAS ES -->
+  <section>
+    <h2>🤟 Señas para cuando hablar cuesta</h2>
+    <p>A veces tu hijo no quiere hablar — o no puede, en ese momento. Eso no significa que no tenga nada que decir.
+    El <strong>Paquete Completo</strong> y el <strong>Paquete 3 Momentos</strong> incluyen un <strong>anexo de señas</strong>,
+    para que tu hijo tenga otra manera de decirte lo que necesita, justo cuando importa.</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="emoji">🙌</div>
+        <h3>Las señas de esta historia</h3>
+        <p>El anexo de cada historia enseña las señas de su propia situación — por ejemplo, en el dentista:</p>
+        <ul>
+          <li><strong>Ayuda</strong></li>
+          <li><strong>Duele</strong></li>
+          <li><strong>Terminé</strong></li>
+          <li><strong>Pausa</strong> (descanso)</li>
+        </ul>
+        <p>Tu hijo puede pedir ayuda, decir que algo le duele o pedir una pausa — sin palabras.</p>
+      </div>
+      <div class="sample">
+        <div class="emoji">⭐</div>
+        <h3>Mis primeras señas — en los paquetes Completo y 3 Momentos</h3>
+        <p>Esos paquetes incluyen además nuestro set inicial de <strong>12 señas esenciales</strong>, ilustradas paso a paso:</p>
+        <p>Ayuda · Más · Terminé · Baño · Comer · Tomar agua · Duele · Pausa · Mamá · Papá · Sí · No</p>
+        <p>Señas simples que toda la familia puede aprender junta y usar todos los días, en casa y en cualquier lugar.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Nota honesta: no existe una lengua de señas universal — cada país tiene la suya.
+    Nuestras señas usan <strong>ASL</strong> (lengua de señas americana, la de EE. UU.), con notas donde una seña
+    es diferente en <strong>LSM</strong> (Lengua de Señas Mexicana). Cada seña se verifica contra referencias de ASL/LSM antes de entregar.</div>
+  </section>
+
+  <!-- GUÍA PARA PADRES ES -->
+  <section>
+    <h2>💙 Guía para Padres incluida en los paquetes Completo y 3 Momentos</h2>
+    <div class="evidence">
+      <p>El <strong>Paquete Completo</strong> y el <strong>Paquete 3 Momentos</strong> incluyen además nuestra guía
+      completa para padres, <strong>«Entender a tu hijo cuando no habla»</strong>, sin costo extra (el Paquete Historia
+      incluye una mini-guía de lectura). Porque la historia prepara a tu hijo, y esta guía te prepara a <em>ti</em>.</p>
+      <p>Dentro encontrarás, en lenguaje claro y cercano:</p>
+      <ul>
+        <li>Qué puede estar <strong>comunicando tu hijo con su conducta</strong> cuando no usa palabras</li>
+        <li>Señales no verbales comunes — y qué pueden significar</li>
+        <li>Cómo responder en un <strong>momento difícil</strong>: primero calma y seguridad</li>
+        <li>Herramientas simples para casa: ofrecer opciones, señas y apoyos visuales</li>
+        <li>Cuándo — y cómo — buscar apoyo profesional</li>
+      </ul>
+      <p><a href="guias/Guia_para_Padres_ES.pdf"><strong>📄 Lee la Guía para Padres completa, gratis (PDF)</strong></a> —
+      la misma guía que reciben las familias de los paquetes Completo y 3 Momentos.</p>
+      <div class="disclaimer">Recurso educativo de apoyo — no es consejo médico, diagnóstico ni tratamiento.</div>
+    </div>
+  </section>
+
+  <!-- HECHO PARA TU HIJO ES -->
+  <section>
+    <h2>🦖 Hecho para tu hijo — con lo que más le gusta</h2>
+    <div class="evidence">
+      <p>El formulario hace una pregunta especial: <strong>¿qué le encanta a tu hijo?</strong> Dinosaurios, trenes,
+      el espacio, animales, autos, el mar… Sea lo que sea, ese interés entra a su historia como su
+      <strong>compañero y motivador</strong> — y también aparece en las páginas para colorear y en las actividades
+      interactivas. Una historia del dentista se lee más fácil cuando un dinosaurio amable viene con él.</p>
+      <p class="note">Los compañeros son personajes originales y genéricos, dibujados en nuestro propio estilo —
+      no usamos personajes con licencia ni de marcas.</p>
+    </div>
+  </section>
+
+  <!-- PRECIOS ES -->
+  <section>
+    <h2>Paquetes — precios simples y honestos</h2>
+    <div class="prices">
+      <div class="price">
+        <h3>Paquete Historia — <span class="amount">$29.99</span></h3>
+        <ul>
+          <li><strong>1 historia personalizada</strong> (1 tema del menú de 8, o el tuyo en la nota)</li>
+          <li>Nombre de tu hijo + personaje ilustrado desde su foto</li>
+          <li>PDF listo para imprimir, de 10–12 páginas</li>
+          <li>Mini-guía de lectura para padres</li>
+          <li><strong>4 páginas para colorear</strong> de su historia</li>
+          <li>Su interés favorito como compañero en la historia</li>
+          <li>Inglés <em>o</em> español · Entrega en 24–48 horas</li>
+        </ul>
+      </div>
+      <div class="price best">
+        <h3>Paquete Completo — <span class="amount">$49.99</span> <span class="badge">El favorito</span></h3>
+        <ul>
+          <li><strong>Todo lo del Paquete Historia</strong>, más:</li>
+          <li><strong>Anexo de señas de tu tema</strong> + el set «Mis primeras señas» (12 señas esenciales)</li>
+          <li><strong>Guía para Padres completa</strong> — «Entender a tu hijo cuando no habla»</li>
+          <li><strong>Libro para colorear de su personaje</strong> (10 páginas)</li>
+          <li><strong>Cuaderno interactivo</strong>: trazos, recorta y ordena los pasos, une con líneas</li>
+          <li><strong>Tabla de logros</strong> — «¡Lo logré!»</li>
+          <li>1 ronda de corrección gratis · Inglés <em>o</em> español · 24–48 horas</li>
+        </ul>
+      </div>
+      <div class="price">
+        <h3>Paquete 3 Momentos — <span class="amount">$79.99</span></h3>
+        <ul>
+          <li><strong>3 historias personalizadas</strong> — 3 temas diferentes</li>
+          <li><strong>Todos los extras del Paquete Completo</strong> para tu familia</li>
+          <li>Anexos de señas + Mis primeras señas + Guía para Padres completa</li>
+          <li>Libro para colorear (10 páginas) + cuaderno interactivo</li>
+          <li>Tabla de logros — «¡Lo logré!»</li>
+          <li>1 ronda de corrección gratis · Inglés <em>o</em> español</li>
+        </ul>
+      </div>
+    </div>
+    <div class="launch">
+      🎉 <strong>Oferta de lanzamiento:</strong> las primeras <strong>3 familias</strong> reciben el <strong>Paquete Historia
+      a $19.99</strong> a cambio de un testimonio breve después de la entrega. Escribe «oferta de lanzamiento» en la nota
+      de tu formulario — los primeros en pedir, los primeros en recibir.
+    </div>
+    <p class="note" style="margin-top:12px">Historias personalizadas comparables, hechas a mano en Etsy, se venden entre
+    $19.99 y $49.99 con entrega en 3–5 días — solo la historia. Nuestros paquetes entregan en 24–48 horas, en inglés
+    <em>y</em> en español, con actividades y guías incluidas.</p>
+  </section>
+
+  <!-- INTERACTIVO ES -->
+  <section>
+    <h2>✂️ Interactivo: un cuaderno para hacer con las manos</h2>
+    <p>Los paquetes Completo y 3 Momentos incluyen un <strong>cuaderno interactivo imprimible</strong> protagonizado por
+    tu hijo y su compañero favorito — actividades para hacer juntos en la mesa, <strong>sin pantallas</strong>:</p>
+    <div class="samples">
+      <div class="sample">
+        <div class="emoji">✏️</div>
+        <h3>Trazar, colorear y unir</h3>
+        <ul>
+          <li><strong>Sigue los trazos</strong> — caminos, formas y las letras de su propio nombre</li>
+          <li><strong>Colorea</strong> a su personaje y su historia</li>
+          <li><strong>Une con líneas</strong> — seña ↔ palabra, emoción ↔ cara</li>
+          <li><strong>Rodea lo que necesitas</strong> — elegir también es comunicar</li>
+        </ul>
+      </div>
+      <div class="sample">
+        <div class="emoji">⭐</div>
+        <h3>Recortar, ordenar y celebrar</h3>
+        <ul>
+          <li><strong>Recorta los pasos de su historia y ordénalos</strong> — primero, luego, al final</li>
+          <li><strong>Busca y cuenta</strong> con su tema favorito</li>
+          <li><strong>Tabla de logros</strong> con estrellas recortables — «¡Lo logré!»</li>
+        </ul>
+        <p><a href="interactivo/Cuaderno_Interactivo_Leo_DEMO.pdf">📄 Mira el cuaderno interactivo de muestra de Leo (PDF)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIGITAL HOY ES -->
+  <section>
+    <h2>📩 Digital hoy, impreso mañana</h2>
+    <div class="evidence">
+      <p>Hoy todo llega en <strong>PDF listo para imprimir, por correo, en 24–48 horas</strong>, para imprimir en casa
+      o en cualquier imprenta — sin envíos ni esperas, en cualquier parte del mundo.</p>
+      <p>Mañana: la <strong>edición impresa y encuadernada</strong> llegará como opción cuando el servicio valide
+      (fase 2, impresión bajo demanda). Las familias digitales serán las primeras en saberlo.</p>
+    </div>
+  </section>
+
+  <!-- PRIVACIDAD ES -->
+  <section>
+    <div class="privacy">
+      <h2>🔒 Nuestra promesa de privacidad — la foto de tu hijo</h2>
+      <p>Esto no es letra chica. Es parte del producto, y es la razón por la que los padres confían en nosotros:</p>
+      <ul>
+        <li><strong>Un solo uso.</strong> La foto de tu hijo se usa para una sola cosa: crear su personaje ilustrado para su historia.</li>
+        <li><strong>Se borra al entregar.</strong> Cuando tu historia se entrega, borramos la foto — el original y todas las copias de trabajo. No nos quedamos con nada.</li>
+        <li><strong>Nunca se publica.</strong> Nunca publicamos, compartimos ni usamos la foto o la historia de un cliente en ningún lado — salvo que tú nos des permiso expreso por escrito (por ejemplo, una muestra anonimizada).</li>
+        <li><strong>Muestras ficticias.</strong> Todas las muestras de esta página tienen como protagonista a Leo, un niño ficticio creado para demostración. Ninguna imagen de un niño real aparece en este sitio.</li>
+        <li><strong>Sin cuentas ni rastreo de tu hijo.</strong> Pides por correo y un formulario simple. Solo pedimos lo que la historia necesita.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ ES -->
+  <section>
+    <h2>Preguntas, respondidas con claridad</h2>
+    <details><summary>¿Qué tipo de foto debo mandar?</summary>
+      <p>Una foto clara donde la carita de tu hijo se vea bien iluminada — una foto de celular es perfecta.
+      La convertimos en un personaje ilustrado en acuarela suave, consistente en toda la historia.
+      Esa foto se borra en cuanto tu historia se entrega.</p></details>
+    <details><summary>¿Cuánto tarda y cómo la recibo?</summary>
+      <p>24–48 horas desde que se confirma el pago. Tu historia llega por correo como PDF listo para imprimir
+      (10–12 páginas), para imprimir en casa o en cualquier imprenta, o para leer en una tableta.</p></details>
+    <details><summary>¿Puedo pedirla en inglés — o en los dos idiomas?</summary>
+      <p>Sí. Cada historia se puede hacer en inglés, en español o — si tu familia es bilingüe — pregúntanos en la
+      nota del formulario por una versión en dos idiomas. El español lo escriben hablantes nativos, no una traducción automática palabra por palabra.</p></details>
+    <details><summary>¿Qué NO es esto?</summary>
+      <p>Esto es un <strong>recurso educativo de apoyo</strong>. No es terapia, no es un diagnóstico, no es consejo
+      médico y no promete curar, tratar ni cambiar ninguna condición. Es una historia de preparación para leer
+      con tu hijo — la misma clase de herramienta que maestros y familias usan desde hace décadas, hecha personal.</p></details>
+    <details><summary>¿Cómo se hacen las ilustraciones?</summary>
+      <p>Con honestidad: nuestras ilustraciones son <strong>asistidas por IA y revisadas por una persona</strong>,
+      creadas desde la foto de tu hijo en un estilo original y consistente — la misma transparencia que muestran
+      los vendedores serios de este nicho. Usamos solo ilustraciones propias; nunca revendemos bibliotecas de pictogramas de terceros.</p></details>
+    <details><summary>¿Y si algo en la historia está mal?</summary>
+      <p>Cuéntanos. Si cometimos un error (un nombre, un dato que nos diste), lo corregimos gratis, por supuesto —
+      y los paquetes Completo y 3 Momentos incluyen una ronda de corrección gratis. Si una historia terminada de verdad
+      no es lo que pediste, escríbenos y lo resolvemos — una corrección o un reembolso.</p></details>
+    <details><summary>¿Para qué edades es?</summary>
+      <p>Niños de <strong>3 a 10 años</strong>. El lenguaje es simple y las frases son cortas; si tu hijo
+      necesita un texto todavía más sencillo, cuéntanos en la nota y lo adaptamos.</p></details>
+    <details><summary>¿En qué lengua de señas están las señas?</summary>
+      <p><strong>No existe una lengua de señas universal</strong> — cada país tiene la suya, y lo decimos con claridad.
+      Nuestras señas usan <strong>ASL</strong> (lengua de señas americana), con una nota donde una seña es diferente en
+      <strong>LSM</strong> (Lengua de Señas Mexicana), para que las familias de EE. UU. y de México aprendan la versión
+      que se usa a su alrededor. Cada seña de tu anexo está ilustrada y verificada contra referencias de ASL/LSM antes de entregar.</p></details>
+    <details><summary>¿Qué es la Guía para Padres — y de verdad viene incluida?</summary>
+      <p>Sí — la guía completa <strong>«Entender a tu hijo cuando no habla»</strong> viene incluida gratis en el
+      Paquete Completo y en el Paquete 3 Momentos (el Paquete Historia incluye una mini-guía de lectura). Explica, en lenguaje claro, qué puede estar comunicando tu hijo con su conducta,
+      cómo responder en un momento difícil y herramientas simples para casa — señas, opciones y apoyos visuales.
+      Puedes leerla gratis en esta página antes de pedir. Es un recurso educativo de apoyo, no consejo médico.</p></details>
+  </section>
+
+  <!-- FORMULARIO ES -->
+  <section id="order-es">
+    <h2>Pide la historia de tu hijo</h2>
+    <p>Llena este formulario y adjunta una foto clara. Te respondemos por correo — normalmente en pocas horas —
+    para confirmar los detalles y mandarte tu enlace seguro de pago por PayPal. Tu historia está lista 24–48 horas después del pago.</p>
+
+    <!-- ============================================================
+         FORMSPREE — PENDIENTE / TODO:
+         Hay que crear un formulario PROPIO de «My Story Hero» en Formspree
+         y reemplazar REPLACE_ME por su ID real antes de publicar.
+         NO reutilizar el formulario de Heirloom Restored (f/xaeooydy):
+         es de otro negocio y mezcla las bandejas.
+         El plan gratuito de Formspree permite subida de archivos (foto).
+         ============================================================ -->
+    <form action="https://formspree.io/f/xyewwzgz" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_language" value="es">
+      <input type="hidden" name="form_version" value="ES">
+
+      <label for="parent_name_es">Tu nombre (padre, madre o tutor)</label>
+      <input type="text" id="parent_name_es" name="parent_name" required autocomplete="name">
+
+      <label for="email_es">Tu correo electrónico</label>
+      <input type="email" id="email_es" name="email" required autocomplete="email">
+
+      <label for="child_name_es">Nombre de tu hijo (el nombre del protagonista)</label>
+      <input type="text" id="child_name_es" name="child_name" required>
+
+      <label for="child_age_es">Edad de tu hijo</label>
+      <select id="child_age_es" name="child_age" required>
+        <option value="3">3 años</option>
+        <option value="4">4 años</option>
+        <option value="5" selected>5 años</option>
+        <option value="6">6 años</option>
+        <option value="7">7 años</option>
+        <option value="8">8 años</option>
+        <option value="9">9 años</option>
+        <option value="10">10 años</option>
+      </select>
+
+      <label for="story_language_es">Idioma de la historia</label>
+      <select id="story_language_es" name="story_language" required>
+        <option value="spanish">Español</option>
+        <option value="english">Inglés</option>
+        <option value="both">Ambos — pregúntame por la versión bilingüe</option>
+      </select>
+
+      <label for="topic_es">Tema</label>
+      <select id="topic_es" name="topic" required>
+        <option value="first_day_school">Primer día de escuela</option>
+        <option value="dentist">Ir al dentista</option>
+        <option value="haircut">Cortarse el pelo</option>
+        <option value="first_flight">Primer vuelo en avión</option>
+        <option value="potty_training">Dejar el pañal</option>
+        <option value="new_sibling">Nuevo hermanito</option>
+        <option value="birthday_party">Fiesta de cumpleaños</option>
+        <option value="own_bed">Dormir solo en mi cama</option>
+        <option value="custom">Mi propio tema — lo describo en la nota</option>
+      </select>
+
+      <label for="level_es">¿Qué paquete quieres?</label>
+      <select id="level_es" name="level" required>
+        <option value="story_pack">Paquete Historia — $29.99 (historia + mini-guía + 4 páginas para colorear)</option>
+        <option value="complete_pack">Paquete Completo — $49.99 (todo: señas, Guía para Padres, libro para colorear, cuaderno interactivo)</option>
+        <option value="three_moments">Paquete 3 Momentos — $79.99 (3 historias + todos los extras del Completo)</option>
+        <option value="launch">Oferta de lanzamiento — $19.99 Paquete Historia (primeras 3 familias, con testimonio)</option>
+      </select>
+
+      <label for="child_loves_es">¿Qué le encanta a tu hijo? (dinosaurios, trenes, el espacio, animales…)</label>
+      <input type="text" id="child_loves_es" name="child_loves" placeholder="Su cosa favorita se convierte en su compañero en la historia">
+      <p class="note">Dibujamos un compañero original en nuestro propio estilo — sin personajes con licencia ni de marcas.</p>
+
+      <label for="photo_es">Adjunta una foto clara de tu hijo (JPG o PNG)</label>
+      <input type="file" id="photo_es" name="photo" accept="image/jpeg,image/png">
+      <p class="note">Se usa solo para crear el personaje de tu hijo — y se borra en el momento en que tu historia se entrega.</p>
+
+      <label for="notes_es">Nota breve — ¿algo que debamos saber? (Qué le preocupa a tu hijo, nombre de la maestra o del dentista, detalles de tu tema a la medida, «oferta de lanzamiento»…)</label>
+      <textarea id="notes_es" name="notes" rows="4"></textarea>
+
+      <label class="checkbox" for="privacy_es">
+        <input type="checkbox" id="privacy_es" name="privacy_accepted" value="yes" required>
+        <span>Entiendo y acepto la promesa de privacidad: la foto de mi hijo se usará solo para crear el personaje
+        de su historia y se borrará cuando la historia se entregue. Nada se publicará sin mi permiso por escrito.</span>
+      </label>
+
+      <button type="submit">Enviar mi pedido</button>
+      <p class="note">Enviar el formulario es gratis y no te compromete a nada. Solo pagas después de que confirmemos
+      tu pedido por correo con un enlace seguro de PayPal.</p>
+    </form>
+  </section>
+
+</div>
+</div>
+
+<footer>
+  My Story Hero — Personalized Social Stories · Historias sociales personalizadas<br>
+  Your child is the hero · Tu hijo es el protagonista · Printable PDF in 24–48 hours / PDF listo para imprimir en 24–48 horas<br>
+  🔒 Your child's photo is deleted on delivery / La foto de tu hijo se borra al entregar
+  <div class="small" style="margin-top:10px">
+    Educational support resource — not medical advice, diagnosis, or treatment.<br>
+    Recurso educativo de apoyo — no es consejo médico, diagnóstico ni tratamiento.
+  </div>
+</footer>
+
+</body>
+</html>
